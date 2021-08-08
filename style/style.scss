@@ -1,0 +1,404 @@
+$primary-color: crimson;
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+@import 'header';
+
+@mixin bd-radius($value:5px) {
+    -webkit-border-radius: $value;
+    -moz-border-radius: $value;
+    border-radius: $value;
+}
+
+@mixin border($width, $style, $color) {
+    border: $width $style $color;
+}
+
+h2 {
+    color: $primary-color;
+    background-color: aliceblue;
+    width: 20%;
+    text-align: center;
+    margin: auto;
+    padding: 15px;
+    @include border(2px, solid, $primary-color);
+    @include bd-radius(15px);
+
+    &:hover {
+        color: #D0649B;
+    }
+}
+
+h3 {
+    color: palevioletred;
+    margin-top: 10px;
+    @extend h2;
+}
+
+%box {
+    width: 400px;
+    height: 200px;
+    background-color: paleturquoise;
+    margin: auto;
+    margin-top: 10px;
+    @include border(2px, solid, $primary-color);
+    @include bd-radius();
+}
+
+#rectangle {
+    @extend %box;
+}
+
+#operator {
+    padding: 10px==10em;
+    border-radius: 4px !=9rem;
+    font-family: tahoma=='tahoma';
+    margin: (2px 4px 9px)==(2px 4px 9px);
+    font-size: 30px>10px;
+    margin-top: 300<200;
+    transition: 1000ms>=1s;
+    color: red==red and 10px==10px;
+    border-color: rosybrown==rosybrown or 3px==3rem;
+    background: not 4==4px;
+}
+
+$var1: 15;
+$var2: 20;
+
+.numeric {
+    padding: $var1+px;
+    margin: $var1+$var2+rem;
+    border-width: $var2 - $var1 + px;
+    width: $var2 * $var1 + px;
+    margin-top: $var2 / $var1 + px;
+    line-height: $var2 % $var1 + px;
+}
+
+// Interpolation
+@mixin margin($position, $value) {
+    margin-#{$position}: $value + px;
+}
+
+#div {
+    @extend %box;
+    @include margin(left, 200)
+}
+
+@mixin set-icon($name) {
+    .icon-#{$name} {
+        background-image: url('images/#{$name}.png');
+    }
+}
+
+@include set-icon(favicon);
+
+// Functions
+$container-width: 1000;
+$third-div: 1200;
+
+@function half($width) {
+    @return $width /2+px;
+}
+
+.half-div {
+    width: half($container-width);
+}
+
+@function one-third($width) {
+    @return $width /3+px;
+}
+
+.one-third-div {
+    width: one-third($third-div);
+}
+
+.number {
+    margin: abs(-20)+px;
+    padding: ceil(13.33)+px;
+    width: floor(35.33)+px;
+    border-width: round(35.64)+px;
+    margin-top: max(5px, 13px, 32px);
+    margin-left: min(5px, 13px, 32px);
+    height: percentage(0.3);
+    min-height: percentage(100px/50px);
+    font-size: comparable(1px, 2px);
+    font: comparable(100px, 30rem);
+    line-height: comparable(10cm, 5mm);
+    padding-top: random();
+    padding-left: random(15);
+    padding-right: unit(200px);
+    padding-bottom: unit(200px * 15rem);
+    margin-bottom: unitless(200px);
+    margin-right: unitless(200);
+}
+
+.string {
+    font: quote(Arial);
+    font-family: unquote('Arial');
+    color: to-upper-case('tomato');
+    border-color: to-lower-case('RED');
+    width: str-length('Verdana');
+    font-weight: str-index('Times New Roman', 'R');
+    background-color: str-insert('alice', 'blue', 6);
+    background: str-slice('aliceblue', 6);
+    color: str-slice('aliceblue', 6, 9);
+    display: unique-id();
+}
+
+.color {
+    color: darken(pink, 55);
+    color: lighten(green, 35);
+    color: adjust-hue(teal, 30);
+    color: saturate(#ad4038, 80);
+    color: desaturate(#ad4038, 50);
+    color: mix(#ad4038, white, 50);
+    color: transparentize(green, 0.5);
+    color: red(#ff8800);
+    color: green(#ff8800);
+    color: green(#ff8800);
+    color: hue(#ff8800);
+    color: saturation(#ff8800);
+    color: lightness(#ff8800);
+    color: alpha(#ff8800);
+}
+
+$list : 10px 20px 30px;
+$commaList : 10,
+20,
+30,
+40;
+
+.list {
+    padding: length($list);
+    padding: length($commaList);
+    padding: length((width:10px, height:20px));
+    padding: nth($list, -1);
+    // padding: nth([list1,list2,list3], -1);
+    padding: set-nth($list, 2, 4em);
+    padding: set-nth((Tahoma, Arial, Verdana), 2, serif);
+    padding: join($list, $commaList);
+    padding: join(1 2 3, 4 5);
+    padding: join((1, 2, 3), (4 5));
+    padding: join((1, 2, 3), (4 5), space);
+    padding: join((1, 2, 3), (4 5), auto);
+    padding: join((1, 2, 3), (4 5), comma);
+    padding: append($list, 70px 80px);
+    padding: append($list, 70px 80px, auto);
+    padding: append($list, 70px 80px, comma);
+    padding: append($list, 70px 80px, space);
+    padding: append((red, green), blue);
+    padding: zip($list, $commaList);
+    padding: zip((red, green, blue), (10px, 30px, 50px));
+    padding: zip(red green blue, 10px 30px 50px);
+    padding: index($list, 20px);
+    padding: index($list, 20);
+    padding: list-separator($list);
+    padding: list-separator($commaList);
+    padding: is-bracketed($list);
+}
+
+// $selector : selector-nest('ul', 'li');
+// $selector : selector-nest('#div #box', 'p');
+// $selector : selector-nest('#box', '&:hover');
+// $selector : selector-nest('#box', '&_xyz');
+// $selector : selector-append('a', '.active');
+// $selector : selector-append('.abc', '_copy');
+// $selector : selector-append('.abc', '_copy,_image');
+// $selector : selector-replace('a.abc', '.abc', '.link');
+// $selector: is-superselector('a','a.active');
+// $selector: simple-selectors('a.link');
+// $selector :selector-unify('a', '.active');
+// $selector :selector-unify('a.active', 'a.link');
+$selector :selector-extend('a.active', 'a', '.link');
+
+#{$selector} {
+    width: 40px;
+}
+
+$font-weights:("regular":400, "medium":500, "bold":700);
+$light-weights:("light":300, "lighter":200, "lightest":100);
+$merge : map-merge($font-weights, $light-weights);
+$remove : map-remove($font-weights, 'regular');
+
+.map {
+    font-weight: map-get($font-weights, 'regular');
+    font: map-keys($font-weights);
+    font-family: map-values($font-weights);
+    background: map-keys($merge);
+    color: map-keys($remove);
+    border-color: map-has-key($font-weights, 'bold');
+    margin: nth($font-weights, 2);
+}
+
+.introspection {
+    width: variable-exists(list);
+    width: global-variable-exists(list);
+    padding: mixin-exists(border);
+    border: function-exists(half);
+    font: type-of($primary-color);
+    color: inspect($primary-color);
+    font-style: inspect(null);
+}
+
+@mixin font($value) {
+    font-family: $value;
+    @content;
+}
+
+.content {
+    @include font(Arial) {
+        font-weight: 500;
+    }
+
+    ;
+}
+
+@mixin width() {
+    @content;
+}
+
+@include width() {
+    .flappy {
+        width: 300px;
+    }
+}
+
+@mixin navbar () {
+    #menu {
+        @content;
+    }
+}
+
+@include navbar() {
+    nav {
+        background-color: aqua;
+    }
+}
+
+@mixin hover() {
+    &:hover {
+        @content;
+    }
+}
+
+.border {
+    @include hover() {
+        border-width: 2px;
+    }
+}
+
+@mixin media($width) {
+    @media screen and (max-width:$width) {
+        @content;
+    }
+}
+
+@include media(700px) {
+    h2 {
+        color: aquamarine;
+    }
+}
+
+// @media screen and (max-width:1000px) {
+//     background-color: crimson; in on and only file
+// }
+
+.item {
+    color: blanchedalmond;
+
+    @at-root {
+        .item-wrapper {
+            color: coral;
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .item-child {
+        background-color: cyan;
+    }
+}
+
+@media print {
+    .container {
+        background-color: olive;
+
+        // @at-root(without : media){
+        //     color: orchid;
+        //     background-color: palegreen;
+        // }
+    }
+}
+
+$font-size : 30;
+
+p {
+    @if 2+2==5 {
+        color: white;
+    }
+
+    @if $font-size>50 {
+        font-weight: bold;
+    }
+
+    @else if $font-size>=25 {
+        font-weight: lighter;
+    }
+
+    @else {
+        font-weight: medium;
+    }
+}
+
+@mixin changeColor ($value) {
+    @if($value==20) {
+        color: plum;
+    }
+}
+
+@for $i from 1 through 4 {
+    .list-#{$i} {
+        width: 100px * $i;
+    }
+}
+
+@each $i in (bold, medium, lighter) {
+    .#{$i} {
+        font-weight: $i;
+    }
+}
+
+$lists: ((normal, bold, 20px), (italic, medium, 35px));
+
+@each $name,
+$style,
+$size in $lists {
+    .#{$name} {
+        font-style: $style;
+        font-size: $size;
+    }
+}
+
+$map : (normal : 10px, medium : 20px, bold : 30px);
+
+@each $name,
+$f-size in $map {
+    .#{$name} {
+        font-weight: $name;
+        font-size: $f-size;
+    }
+}
+
+$it : 10;
+
+@while $it<=40 {
+    .pad-#{$it} {
+        padding: $it + px;
+    }
+
+    $it: $it+10;
+}

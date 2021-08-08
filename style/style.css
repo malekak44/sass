@@ -1,0 +1,252 @@
+body {
+  font-family: Georgia, 'Times New Roman', Times, serif; }
+
+nav {
+  background-color: crimson; }
+  nav ul {
+    color: aliceblue; }
+  nav li {
+    list-style: none;
+    padding: 15px; }
+
+h2, h3 {
+  color: crimson;
+  background-color: aliceblue;
+  width: 20%;
+  text-align: center;
+  margin: auto;
+  padding: 15px;
+  border: 2px solid crimson;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  border-radius: 15px; }
+  h2:hover, h3:hover {
+    color: #D0649B; }
+
+h3 {
+  color: palevioletred;
+  margin-top: 10px; }
+
+#rectangle, #div {
+  width: 400px;
+  height: 200px;
+  background-color: paleturquoise;
+  margin: auto;
+  margin-top: 10px;
+  border: 2px solid crimson;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px; }
+
+#operator {
+  padding: false;
+  border-radius: true;
+  font-family: true;
+  margin: true;
+  font-size: true;
+  margin-top: false;
+  transition: true;
+  color: true;
+  border-color: true;
+  background: false; }
+
+.numeric {
+  padding: 15px;
+  margin: 35rem;
+  border-width: 5px;
+  width: 300px;
+  margin-top: 1.3333333333px;
+  line-height: 5px; }
+
+#div {
+  margin-left: 200px; }
+
+.icon-favicon {
+  background-image: url("images/favicon.png"); }
+
+.half-div {
+  width: 500px; }
+
+.one-third-div {
+  width: 400px; }
+
+.number {
+  margin: 20px;
+  padding: 14px;
+  width: 35px;
+  border-width: 36px;
+  margin-top: 32px;
+  margin-left: 5px;
+  height: 30%;
+  min-height: 200%;
+  font-size: true;
+  font: false;
+  line-height: true;
+  padding-top: 0.2501339975;
+  padding-left: 14;
+  padding-right: "px";
+  padding-bottom: "px*rem";
+  margin-bottom: false;
+  margin-right: true; }
+
+.string {
+  font: "Arial";
+  font-family: Arial;
+  color: "TOMATO";
+  border-color: "red";
+  width: 7;
+  font-weight: 11;
+  background-color: "aliceblue";
+  background: "blue";
+  color: "blue";
+  display: u0n3t2hhv; }
+
+.color {
+  color: #a7001d;
+  color: #34ff34;
+  color: #004080;
+  color: #e51000;
+  color: #747171;
+  color: #d6a09c;
+  color: rgba(0, 128, 0, 0.5);
+  color: 255;
+  color: 136;
+  color: 136;
+  color: 32deg;
+  color: 100%;
+  color: 50%;
+  color: 1; }
+
+.list {
+  padding: 3;
+  padding: 4;
+  padding: 2;
+  padding: 30px;
+  padding: 10px 4em 30px;
+  padding: Tahoma, serif, Verdana;
+  padding: 10px 20px 30px 10 20 30 40;
+  padding: 1 2 3 4 5;
+  padding: 1, 2, 3, 4, 5;
+  padding: 1 2 3 4 5;
+  padding: 1, 2, 3, 4, 5;
+  padding: 1, 2, 3, 4, 5;
+  padding: 10px 20px 30px 70px 80px;
+  padding: 10px 20px 30px 70px 80px;
+  padding: 10px, 20px, 30px, 70px 80px;
+  padding: 10px 20px 30px 70px 80px;
+  padding: red, green, blue;
+  padding: 10px 10, 20px 20, 30px 30;
+  padding: red 10px, green 30px, blue 50px;
+  padding: red 10px, green 30px, blue 50px;
+  padding: 2;
+  padding: 2;
+  padding: space;
+  padding: comma;
+  padding: false; }
+
+a.active, .active.link {
+  width: 40px; }
+
+.map {
+  font-weight: 400;
+  font: "regular", "medium", "bold";
+  font-family: 400, 500, 700;
+  background: "regular", "medium", "bold", "light", "lighter", "lightest";
+  color: "medium", "bold";
+  border-color: true;
+  margin: "medium" 500; }
+
+.introspection {
+  width: true;
+  width: true;
+  padding: true;
+  border: true;
+  font: color;
+  color: crimson;
+  font-style: null; }
+
+.content {
+  font-family: Arial;
+  font-weight: 500; }
+
+.flappy {
+  width: 300px; }
+
+#menu nav {
+  background-color: aqua; }
+
+.border:hover {
+  border-width: 2px; }
+
+@media screen and (max-width: 700px) {
+  h2, h3 {
+    color: aquamarine; } }
+.item {
+  color: blanchedalmond; }
+  .item-wrapper {
+    color: coral; }
+    .item-wrapper img {
+      width: 100%; }
+  .item .item-child {
+    background-color: cyan; }
+
+@media print {
+  .container {
+    background-color: olive; } }
+p {
+  font-weight: lighter; }
+
+.list-1 {
+  width: 100px; }
+
+.list-2 {
+  width: 200px; }
+
+.list-3 {
+  width: 300px; }
+
+.list-4 {
+  width: 400px; }
+
+.bold {
+  font-weight: bold; }
+
+.medium {
+  font-weight: medium; }
+
+.lighter {
+  font-weight: lighter; }
+
+.normal {
+  font-style: bold;
+  font-size: 20px; }
+
+.italic {
+  font-style: medium;
+  font-size: 35px; }
+
+.normal {
+  font-weight: normal;
+  font-size: 10px; }
+
+.medium {
+  font-weight: medium;
+  font-size: 20px; }
+
+.bold {
+  font-weight: bold;
+  font-size: 30px; }
+
+.pad-10 {
+  padding: 10px; }
+
+.pad-20 {
+  padding: 20px; }
+
+.pad-30 {
+  padding: 30px; }
+
+.pad-40 {
+  padding: 40px; }
+
+/*# sourceMappingURL=style.css.map */
