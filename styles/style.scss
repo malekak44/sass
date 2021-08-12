@@ -1,0 +1,381 @@
+$base-color : #f3c4cd;
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+}
+
+h1 {
+    color: $base-color;
+}
+
+h2 {
+    @extend h1;
+}
+
+@mixin border {
+    border: 1px solid $base-color;
+    border-radius: 5px;
+}
+
+@mixin mid-img($width:100%) {
+    width: $width;
+    margin: auto;
+    display: block;
+}
+
+%imgBox {
+    @include border();
+    width: 25%;
+    padding: 15px 0px;
+    margin: 20px auto;
+    background-color: #F8EDF6;
+
+    img {
+        @include mid-img(90%);
+    }
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    #top,
+    #middle,
+    #bottom {
+        @extend %imgBox;
+    }
+}
+
+// ###operators 
+/*
+20px==20px;
+20==20rem;
+tahoma=='tahoma';
+8 !=12px;
+(2px 5px 8px)==(2px 5px 8px);
+3rem>5rem;
+4rem<6rem;
+1000ms>=1s;
+verdana=='verdana'and 10px==10px;
+verdana=='verdana'and 10px==10px;
+not 4==4px;
+*/
+
+// ###numeric
+$var1 : 10;
+$var2 : 20;
+
+.numeric {
+    font-size: $var1 + px;
+    width: $var1 + $var2 + px;
+    border-width: $var2 - $var1 + px;
+    height: $var1 * $var2 + px;
+    min-height: $var2 / $var1 + px;
+    outline: $var2 % $var1 + px;
+}
+
+// ###interpolation
+@mixin margin($position, $value) {
+    margin-#{$position}: $value;
+}
+
+@mixin set-image($name) {
+    background: url('../images/#{$name}.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+// ###functions
+@function halve($value) {
+    @return $value / 2+px;
+}
+
+#box {
+    background-color: transparent;
+    height: halve(600);
+    @extend %imgBox;
+    @include margin(top, 20px);
+    @include set-image(cerosene-lamp);
+}
+
+// ###number functions
+#number {
+    width: abs(-30.5)+px;
+    height: ceil(29.4)+px;
+    min-height: floor(29.4)+px;
+    max-height: round(29.5)+px;
+    margin-top: max(12px, 16px, 20px);
+    margin-left: min(12px, 16px, 20px);
+    margin-right: percentage(0.5);
+    margin-bottom: percentage(100px/250px);
+    font: comparable(2px, 6px);
+    font-size: comparable(3px, 7rem);
+    border: comparable(13cm, 40mm);
+    padding-top: unit(30px);
+    padding-left: unit(30px* 10rem);
+    padding-right: unitless(30px);
+    padding-bottom: unitless(30);
+    line-height: random();
+    word-spacing: random(10);
+}
+
+// ###string functions
+#string {
+    font: quote(Arial);
+    font-family: unquote('Arial');
+    color: to-upper-case('tomato');
+    background: to-lower-case('SALMON');
+    line-height: str-length('aliceblue');
+    font-size: str-index('aliceblue', 'blue');
+    border-color: str-insert('salmon', 'light', 0);
+    outline-color: str-slice('darkred', 5);
+    border-image: str-slice('listiconimg', 5, 8);
+    display: unique-id();
+}
+
+// ###color functions
+#color {
+    color: darken(teal, 0.7);
+    color: lighten(teal, 0.3);
+    color: adjust-hue(teal, 40);
+    color: saturate(#ad4038, 60);
+    color: desaturate(#ad4038, 50);
+    color: mix(yellow, red, 50);
+    color: transparentize(green, 0.5);
+    color: red(#ff8800);
+    color: green(#ff8800);
+    color: hue(#ff8800);
+    color: saturation(#ff8800);
+    color: lightness(#ff8800);
+    color: alpha(#ff8800);
+}
+
+$list: 10px 20px 30px 40px;
+$comma-list: 40em,
+30em,
+20em,
+10em;
+
+#list {
+    line-height: length($list);
+    font-weight: length($comma-list);
+    font-size: length((width:200px, height:400));
+    content: nth($list, 3);
+    width: nth((10px, 15px, 18px), -1);
+    margin: set-nth($list, 2, 3rem);
+    padding: set-nth((10px, 15px, 18px), 3, 20px);
+    font-family: set-nth((Arial, serif, tahoma), 2, verdana);
+    width: join($list, $comma-list);
+    width: join(1 2 3, 4 5);
+    width: join((1, 2, 3), (4 5));
+    height: join((1, 2, 3), (4 5), space);
+    height: join((1, 2, 3), (4 5), comma);
+    height: join((1, 2, 3), (4 5), auto);
+    font: append($list, 50px 60px);
+    font: append($list, 50px 60px, comma);
+    font: append($list, 50px 60px, auto);
+    font: append($list, 50px 60px, space);
+    color: append((red, green), blue);
+    padding: zip($list, $comma-list);
+    background: zip((red, green, blue), (20rem 45rem 3em));
+    background-color: zip(red green blue, 20rem 45rem 3em);
+    text-shadow: index($list, 30px);
+    box-shadow: index($list, 40);
+    margin: list-separator($list);
+    padding: list-separator($comma-list);
+    border: is-bracketed($list);
+}
+
+// ###selector functions
+$selector : selector-nest('nav', 'ul');
+$selector : selector-nest('#box div', 'p');
+$selector : selector-nest('#box', '&:hover');
+$selector : selector-nest('#box', '&_para');
+$selector : selector-append('a', '.link');
+$selector : selector-append('#box', '_para');
+$selector : selector-append('#box', '-para,-img');
+$selector : selector-replace('a.link', '.link', '.active');
+$selector : is-superselector('a', 'a.link');
+$selector : simple-selectors('a.link');
+$selector : selector-unify('a', '.active');
+$selector : selector-unify('a.link', 'a.active');
+$selector : selector-extend('a.link', 'a', '.active');
+
+#{$selector} {
+    color: crimson;
+}
+
+// ###map functions
+$bolds : ("regular":400, "medium":500, "bold":700);
+$lights : ("light":300, "lighter":200, "lightest":100);
+$merged : map-merge($bolds, $lights);
+$removed : map-remove($bolds, 'bold medium');
+
+#map {
+    font-weight: map-get($bolds, 'bold');
+    font: map-keys($bolds);
+    margin: map-values($bolds);
+    border: map-has-key($bolds, 'medium');
+    padding: nth($lights, 3);
+    background: map-keys($merged);
+    color: map-keys($removed);
+}
+
+#introspection {
+    font: variable-exists(list);
+    width: global-variable-exists(list);
+    margin: mixin-exists(border);
+    padding: function-exists(halve);
+    border: type-of($bolds);
+    color: inspect($base-color);
+    background: inspect(null);
+}
+
+// content in mixin
+@mixin font() {
+    font-family: Arial, Helvetica, sans-serif;
+    @content;
+}
+
+#content {
+    @include font() {
+        font-size: 2rem;
+        font-style: italic;
+    }
+}
+
+@mixin color {
+    @content;
+}
+
+@include color() {
+    #para {
+        background-color: $base-color;
+        color: crimson;
+        border-color: bisque;
+    }
+}
+
+@mixin hover {
+    nav {
+        &:hover {
+            @content;
+        }
+    }
+}
+
+@include hover() {
+    background-color: brown;
+}
+
+@mixin media ($width) {
+    @media only screen and (max-width:$width) {
+        @content;
+    }
+}
+
+@include media(768px) {
+    nav {
+        width: 400px;
+    }
+}
+
+nav {
+    color: coral;
+
+    li {
+        color: chocolate;
+
+        @at-root a {
+            color: cyan;
+        }
+    }
+}
+
+@media print {
+    #para {
+        border-radius: 10px;
+    }
+
+    // @at-root(without : media) {
+    //     border-radius: 5px;
+    // }
+}
+
+$font-size : 15px;
+
+p {
+    @if 2==2px {
+        color: gold;
+    }
+
+    @if $font-size>20 {
+        font-weight: bold;
+    }
+
+    @else if $font-size>10 {
+        font-weight: medium;
+    }
+
+    @else {
+        font-weight: lighter;
+    }
+}
+
+@mixin color {
+    @if $font-size==15px {
+        @content;
+    }
+}
+
+@include color() {
+    .link {
+        font-size: 20px;
+    }
+}
+
+@for $i from 1 through 3 {
+    .item-#{$i} {
+        border-width: $i+px;
+    }
+}
+
+@each $i in $list {
+    .list-#{$i} {
+        width: $i;
+    }
+}
+
+$font-lists: ((normal, bold, 20px), (italic, inherit, 35px));
+
+@each $name,
+$style,
+$size in $font-lists {
+    .#{$name} {
+        font-style: $style;
+        font-size: $size;
+    }
+}
+
+@each $type,
+$weight in $bolds {
+    .para-#{$type} {
+        font-style: $type;
+        font-weight: $weight;
+    }
+}
+
+$num : 5;
+
+@while $num<10 {
+    .num-#{$num} {
+        font-size: $num + px;
+    }
+
+    $num : $num+2;
+}
